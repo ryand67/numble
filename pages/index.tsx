@@ -14,8 +14,10 @@ const Home: NextPage = () => {
 		borderColor: 'border-white',
 		buttonColor: 'bg-zinc-600',
 	});
+	// How many guesses the user has made
 	const [guessNum, setGuessNum] = useState<number>(0);
-	const [currentUserGuess, setCurrentUserGuess] = useState<string[]>();
+	const [currentUserGuess, setCurrentUserGuess] = useState<string>('');
+	const [guessHistory, setGuessHistory] = useState<string[]>([]);
 
 	const processNum = (n: number): string => {
 		let res: string = `${n.toString()}`;
@@ -36,8 +38,12 @@ const Home: NextPage = () => {
 			theme,
 			guessNum,
 			currentUserGuess,
+			guessHistory,
+			setCurrentUserGuess,
+			setGuessNum,
+			setGuessHistory,
 		};
-	}, [secretNumber, theme, guessNum, currentUserGuess]);
+	}, [secretNumber, theme, guessNum, currentUserGuess, guessHistory]);
 
 	return (
 		<>

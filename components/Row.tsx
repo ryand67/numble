@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import { StateContext } from '../util/context';
 
-function Row({ num }): JSX.Element {
-	const { theme } = useContext(StateContext);
+function Row({ num: rowNum }): JSX.Element {
+	const { theme, currentUserGuess, guessNum, guessHistory } =
+		useContext(StateContext);
 
 	return (
 		<>
@@ -12,10 +13,13 @@ function Row({ num }): JSX.Element {
 				{Array.from(Array(5).keys()).map((n: number) => {
 					return (
 						<div
-							key={`${n}-row-${num}`}
-							className={`w-1/5 p-8 m-2 border ${theme.borderColor}`}
+							key={`${n}-row-${rowNum}`}
+							className={`flex justify-items-center items-center w-1/5 h-8 p-8 m-2 border ${theme.fontColor} ${theme.borderColor}`}
 						>
-							<h1></h1>
+							<h1 className="text-xl w-0 h-0">
+								{guessNum === rowNum ? currentUserGuess[n] : ''}
+								{guessHistory[rowNum] ? guessHistory[rowNum][n] : ''}
+							</h1>
 						</div>
 					);
 				})}
