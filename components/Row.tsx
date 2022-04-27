@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { StateContext } from '../util/context';
 
-function Row({ num: rowNum }): JSX.Element {
+function Row({ num: rowNum, results }): JSX.Element {
 	const { theme, currentUserGuess, guessNum, guessHistory } =
 		useContext(StateContext);
 

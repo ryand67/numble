@@ -18,6 +18,7 @@ const Home: NextPage = () => {
 	const [guessNum, setGuessNum] = useState<number>(0);
 	const [currentUserGuess, setCurrentUserGuess] = useState<string>('');
 	const [guessHistory, setGuessHistory] = useState<string[]>([]);
+	const [resultHistory, setResultHistory] = useState<string[][]>([]);
 
 	const processNum = (n: number): string => {
 		let res: string = `${n.toString()}`;
@@ -32,6 +33,10 @@ const Home: NextPage = () => {
 		setSecretNumber(result);
 	}, []);
 
+	useEffect(() => {
+		console.log(resultHistory);
+	}, [resultHistory]);
+
 	const contextValues = useMemo((): object => {
 		return {
 			secretNumber,
@@ -39,9 +44,11 @@ const Home: NextPage = () => {
 			guessNum,
 			currentUserGuess,
 			guessHistory,
+			resultHistory,
 			setCurrentUserGuess,
 			setGuessNum,
 			setGuessHistory,
+			setResultHistory,
 		};
 	}, [secretNumber, theme, guessNum, currentUserGuess, guessHistory]);
 
@@ -59,7 +66,9 @@ const Home: NextPage = () => {
 					</h1>
 					<div className={`flex flex-col my-8`}>
 						{Array.from(Array(5).keys()).map((n: number): JSX.Element => {
-							return <Row key={`row-${n}`} num={n} />;
+							return (
+								<Row key={`row-${n}`} results={resultHistory[n]} num={n} />
+							);
 						})}
 					</div>
 					<Keyboard />
