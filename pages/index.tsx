@@ -3,14 +3,16 @@ import { useState, useMemo, useEffect } from 'react';
 import { StateContext } from '../util/context';
 import Head from 'next/head';
 import Row from '../components/Row';
+import Keyboard from '../components/Keyboard';
 import { ThemeObj } from '../util/types/globalTypes';
 
 const Home: NextPage = () => {
 	const [secretNumber, setSecretNumber] = useState<string>();
 	const [theme, setTheme] = useState<ThemeObj>({
 		fontColor: 'text-white',
-		bgColor: 'bg-black',
+		bgColor: 'bg-zinc-900',
 		borderColor: 'border-white',
+		buttonColor: 'bg-zinc-600',
 	});
 	const [guessNum, setGuessNum] = useState<number>(0);
 	const [currentUserGuess, setCurrentUserGuess] = useState<string[]>();
@@ -49,11 +51,12 @@ const Home: NextPage = () => {
 					<h1 className={`${theme.fontColor} text-5xl pt-5`}>
 						Numble {secretNumber}
 					</h1>
-					<div className={``}>
+					<div className={`flex flex-col my-8`}>
 						{Array.from(Array(5).keys()).map((n: number): JSX.Element => {
-							return <Row num={n} />;
+							return <Row key={`row-${n}`} num={n} />;
 						})}
 					</div>
+					<Keyboard />
 				</div>
 			</StateContext.Provider>
 		</>
