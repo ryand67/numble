@@ -19,6 +19,8 @@ const Home: NextPage = () => {
 	const [currentUserGuess, setCurrentUserGuess] = useState<string>('');
 	const [guessHistory, setGuessHistory] = useState<string[]>([]);
 	const [resultHistory, setResultHistory] = useState<string[][]>([]);
+	// gameState: true = playing, false = won/lost
+	const [gameState, setGameState] = useState<boolean>(true);
 
 	const processNum = (n: number): string => {
 		let res: string = `${n.toString()}`;
@@ -34,8 +36,10 @@ const Home: NextPage = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log(resultHistory);
-	}, [resultHistory]);
+		if (!gameState) {
+			alert(`Game Over! ${guessHistory.length}/6`);
+		}
+	}, [gameState]);
 
 	const contextValues = useMemo((): object => {
 		return {
@@ -45,10 +49,12 @@ const Home: NextPage = () => {
 			currentUserGuess,
 			guessHistory,
 			resultHistory,
+			gameState,
 			setCurrentUserGuess,
 			setGuessNum,
 			setGuessHistory,
 			setResultHistory,
+			setGameState,
 		};
 	}, [secretNumber, theme, guessNum, currentUserGuess, guessHistory]);
 
