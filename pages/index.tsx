@@ -61,7 +61,7 @@ const Home: NextPage = () => {
 	return (
 		<>
 			<Head>
-				<title>Numberle</title>
+				<title>Numble</title>
 			</Head>
 			<StateContext.Provider value={contextValues}>
 				<div
