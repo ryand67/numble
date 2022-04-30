@@ -69,7 +69,7 @@ function Keypad({ value }: { value: string | number }) {
 						setCurrentUserGuess((p) => p.substring(0, p.length - 1));
 						break;
 					case 'enter':
-						if (guessNum < 4 && currentUserGuess.length === 5 && gameState) {
+						if (guessNum < 5 && currentUserGuess.length === 5 && gameState) {
 							evaluateGuess(currentUserGuess, secretNumber);
 							setGuessHistory([...guessHistory, currentUserGuess]);
 							setGuessNum((p) => (p += 1));
