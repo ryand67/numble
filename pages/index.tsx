@@ -67,9 +67,7 @@ const Home: NextPage = () => {
 				<div
 					className={`${theme.bgColor} flex flex-col justify-items-center items-center w-full h-screen`}
 				>
-					<h1 className={`${theme.fontColor} text-5xl pt-5`}>
-						Numble {secretNumber}
-					</h1>
+					<h1 className={`${theme.fontColor} text-5xl pt-5`}>Numble</h1>
 					<div className={`flex flex-col my-8`}>
 						{Array.from(Array(5).keys()).map((n: number): JSX.Element => {
 							return (
